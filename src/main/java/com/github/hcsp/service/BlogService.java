@@ -28,12 +28,13 @@ public class BlogService {
     @Autowired
     public BlogService(BlogDao blogDao) {
         this.blogDao = blogDao;
+        this.logger = null;
     }
 
     /*
     这是为了单元测试而添加的构造函数
      */
-    @Autowired
+//    @Autowired
     public BlogService(BlogDao blogDao,Logger logger){
         this.blogDao = blogDao;
         this.logger = logger;
