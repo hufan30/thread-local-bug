@@ -6,6 +6,8 @@ import com.github.hcsp.entity.BlogListResult;
 import com.github.hcsp.entity.BlogResult;
 import com.github.hcsp.entity.User;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Component;
+import org.springframework.stereotype.Controller;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -14,10 +16,27 @@ import java.util.Objects;
 @Service
 public class BlogService {
     private BlogDao blogDao;
+    private Logger logger;//这里是为了单元测试而添加的
+
+    @Component
+    public static class Logger{
+        public void error(String msg){
+            System.out.println(msg);
+        }
+    }
 
     @Autowired
     public BlogService(BlogDao blogDao) {
         this.blogDao = blogDao;
+    }
+
+    /*
+    这是为了单元测试而添加的构造函数
+     */
+    @Autowired
+    public BlogService(BlogDao blogDao,Logger logger){
+        this.blogDao = blogDao;
+        this.logger = logger;
     }
 
     public BlogListResult getBlogs(Integer page, Integer pageSize, Integer userId) {
@@ -31,6 +50,8 @@ public class BlogService {
 
             return BlogListResult.success(blogs, count, page, pageCount);
         } catch (Exception e) {
+//            logger.error("error");
+            logger.error(e.getMessage());
             return BlogListResult.failure("系统异常");
         }
     }
