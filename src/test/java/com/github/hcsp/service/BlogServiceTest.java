@@ -19,7 +19,6 @@ import static org.mockito.ArgumentMatchers.anyInt;
 import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
 
-
 class BlogServiceTest {
     BlogDao mockDao = Mockito.mock(BlogDao.class);
     BlogService.Logger logger = Mockito.mock(BlogService.Logger.class);

@@ -3,6 +3,7 @@ package com.github.hcsp;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.github.hcsp.entity.Result;
+import com.github.hcsp.service.Junit5ExtensionTest;
 import com.github.kevinsawicki.http.HttpRequest;
 import org.flywaydb.core.Flyway;
 import org.flywaydb.core.api.configuration.ClassicConfiguration;
@@ -26,6 +27,7 @@ import static java.net.HttpURLConnection.HTTP_OK;
 
 @ExtendWith(SpringExtension.class)
 @ExtendWith(MockitoExtension.class)
+@ExtendWith(Junit5ExtensionTest.class)
 @SpringBootTest(classes = Application.class, webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT)
 @TestPropertySource(locations = "classpath:test.properties")
 public class UserLoginIntegrationTest {
